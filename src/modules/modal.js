@@ -1,7 +1,6 @@
 const modal = () => {
   const modal = document.querySelector('.popup');
   const buttons = document.querySelectorAll('.popup-btn');
-  const closeBtn = modal.querySelector('.popup-close');
 
   function animate({ timing, draw, duration }) {
     let start = performance.now();
@@ -30,10 +29,8 @@ const modal = () => {
       const popupContent = modal.querySelector('.popup-content');
 
       animate({
-        duration: 1000,
-        timing: function circ(timeFraction) {
-          return 1 - Math.sin(Math.acos(timeFraction));
-        },
+        duration: 500,
+        timing: linear,
         draw: function (progress) {
           popupContent.style.left = progress * 38 + '%'
         }
@@ -42,8 +39,12 @@ const modal = () => {
   }
 
   buttons.forEach(btn => btn.addEventListener('click', handleMenu));
-
-  closeBtn.addEventListener('click', handleMenu)
+  // closeBtn.addEventListener('click', handleMenu);
+  modal.addEventListener('click', e => {
+    if (!e.target.closest('.popup-content') || e.target.classList.contains('popup-close')) {
+      handleMenu();
+    }
+  })
 }
 
 export default modal;
