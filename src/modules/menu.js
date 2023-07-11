@@ -25,13 +25,13 @@ const menu = () => {
     if (e.target.classList.contains('close-btn')) {
       e.preventDefault();
       handleMenu();
-    }
-
-    if (e.target.closest('li')) {
+    } else if (e.target.closest('li')) {
       e.preventDefault();
       const li = e.target.closest('li');
       handleMenu();
       goToSection(li.children[0]);
+    } else {
+      handleMenu();
     }
   })
 
