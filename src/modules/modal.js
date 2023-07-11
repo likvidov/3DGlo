@@ -39,7 +39,7 @@ const modal = () => {
   }
 
   buttons.forEach(btn => btn.addEventListener('click', handleMenu));
-  // closeBtn.addEventListener('click', handleMenu);
+
   modal.addEventListener('click', e => {
     if (!e.target.closest('.popup-content') || e.target.classList.contains('popup-close')) {
       handleMenu();
