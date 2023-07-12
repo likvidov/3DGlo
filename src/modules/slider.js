@@ -1,7 +1,11 @@
-const slider = () => {
-  const sliderBlock = document.querySelector('.portfolio-content');
-  const slides = document.querySelectorAll('.portfolio-item');
-  const dotsBlock = document.querySelector('.portfolio-dots');
+const slider = (block, items, changer, slideActive = 'portfolio-item-active', dotActive = 'dot-active') => {
+  if (!block) return;
+  if (!items) return;
+  if (!changer) return;
+
+  const sliderBlock = document.querySelector(block);
+  const slides = document.querySelectorAll(items);
+  const dotsBlock = document.querySelector(changer);
   let dots;
 
   let timeInterval = 2000;
@@ -18,16 +22,16 @@ const slider = () => {
   }
 
   const autoSlide = () => {
-    prevSlide(slides, currentSlide, 'portfolio-item-active');
-    prevSlide(dots, currentSlide, 'dot-active');
+    prevSlide(slides, currentSlide, slideActive);
+    prevSlide(dots, currentSlide, dotActive);
     currentSlide++;
 
     if (currentSlide >= slides.length) {
       currentSlide = 0;
     }
 
-    nextSlide(slides, currentSlide, 'portfolio-item-active');
-    nextSlide(dots, currentSlide, 'dot-active');
+    nextSlide(slides, currentSlide, slideActive);
+    nextSlide(dots, currentSlide, dotActive);
   }
 
   const startSlide = (timer = 1500) => {
@@ -46,8 +50,8 @@ const slider = () => {
       return;
     }
 
-    prevSlide(slides, currentSlide, 'portfolio-item-active');
-    prevSlide(dots, currentSlide, 'dot-active');
+    prevSlide(slides, currentSlide, slideActive);
+    prevSlide(dots, currentSlide, dotActive);
 
     if (e.target.matches('#arrow-right')) {
       currentSlide++;
@@ -69,8 +73,8 @@ const slider = () => {
       currentSlide = slides.length - 1;
     }
 
-    nextSlide(slides, currentSlide, 'portfolio-item-active');
-    nextSlide(dots, currentSlide, 'dot-active');
+    nextSlide(slides, currentSlide, slideActive);
+    nextSlide(dots, currentSlide, dotActive);
   })
 
   sliderBlock.addEventListener('mouseenter', (e) => {
@@ -90,7 +94,7 @@ const slider = () => {
     dot.classList.add('dot');
 
     if (index == currentSlide) {
-      dot.classList.add('dot-active')
+      dot.classList.add(dotActive)
     }
 
     dotsBlock.appendChild(dot);

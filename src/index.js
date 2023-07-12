@@ -10,4 +10,4 @@ menu();
 modal();
 validator();
 tabs();
-slider();
+slider('.portfolio-content', '.portfolio-item', '.portfolio-dots');
