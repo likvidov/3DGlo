@@ -1,8 +1,8 @@
-const slicer = (str, num) => {
+export const slicer = (str, num) => {
   return str.trim().length > num ? str.trim().substring(0, num).trim() + '...' : str.trim();
 }
 
-const animate = ({ timing, draw, duration }) => {
+export const animate = ({ timing, draw, duration }) => {
   let start = performance.now();
 
   requestAnimationFrame(function animate(time) {
@@ -19,7 +19,7 @@ const animate = ({ timing, draw, duration }) => {
   });
 }
 
-const linear = (timeFraction) => {
+export const linear = (timeFraction) => {
   return timeFraction;
 }
 

@@ -1,3 +1,5 @@
+import { animate, linear } from "./helpers"
+
 const calc = (price = 100) => {
   const calcBlock = document.querySelector('.calc-block');
   const calcType = document.querySelector('.calc-type');
@@ -5,22 +7,6 @@ const calc = (price = 100) => {
   const calcCount = document.querySelector('.calc-count');
   const calcDay = document.querySelector('.calc-day');
   const total = document.getElementById('total');
-
-  const animateValue = (elem, start, end, duration) => {
-    if (start === end) return;
-    let range = end - start
-    let current = start;
-    let increment = end > start ? 1 : -1;
-    let stepTime = Math.abs(Math.floor(duration / range))
-
-    let timer = setInterval(function () {
-      current += increment;
-      elem.innerHTML = current;
-      if (current == end) {
-        clearInterval(timer);
-      }
-    }, stepTime);
-  }
 
   const countCalc = () => {
     const calcTypeValue = +calcType.options[calcType.selectedIndex].value;
@@ -46,7 +32,13 @@ const calc = (price = 100) => {
       totalValue = 0;
     }
 
-    animateValue(total, 0, totalValue, 500);
+    animate({
+      duration: 1000,
+      timing: linear,
+      draw: function (progress) {
+        total.innerHTML = Math.round(totalValue * progress);
+      }
+    });
   }
 
   calcBlock.addEventListener('input', e => {
