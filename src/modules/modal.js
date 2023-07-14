@@ -1,27 +1,8 @@
+import { animate, linear } from 'helpers.js'
+
 const modal = () => {
   const modal = document.querySelector('.popup');
   const buttons = document.querySelectorAll('.popup-btn');
-
-  function animate({ timing, draw, duration }) {
-    let start = performance.now();
-
-    requestAnimationFrame(function animate(time) {
-      let timeFraction = (time - start) / duration;
-      if (timeFraction > 1) timeFraction = 1;
-
-      let progress = timing(timeFraction);
-
-      draw(progress);
-
-      if (timeFraction < 1) {
-        requestAnimationFrame(animate);
-      }
-    });
-  }
-
-  function linear(timeFraction) {
-    return timeFraction;
-  }
 
   const handleMenu = () => {
     modal.style.display = modal.style.display == 'block' ? 'none' : 'block'
@@ -29,10 +10,10 @@ const modal = () => {
       const popupContent = modal.querySelector('.popup-content');
 
       animate({
-        duration: 500,
+        duration: 1000,
         timing: linear,
         draw: function (progress) {
-          popupContent.style.left = progress * 38 + '%'
+          popupContent.style.left = (progress * 38) + '%'
         }
       });
     }
