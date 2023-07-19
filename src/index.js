@@ -23,3 +23,5 @@ sendForm({
     }
   ]
 });
+sendForm({ formId: 'form2' })
+sendForm({ formId: 'form3' })

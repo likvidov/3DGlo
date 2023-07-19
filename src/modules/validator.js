@@ -11,8 +11,14 @@ const validator = () => {
     })
   })
 
+  nameInputs.forEach(item => {
+    item.addEventListener('input', () => {
+      item.value = item.value.replace(/[^а-я\s]+/gim, "");
+    })
+  })
+
   messageInput.addEventListener('input', () => {
-    messageInput.value = messageInput.value.replace(/[^а-я\-\s]+/gim, "");
+    messageInput.value = messageInput.value.replace(/[^а-я0-9\s\.\,\!]+/gim, "");
   })
 
   emailInputs.forEach(item => {
@@ -23,7 +29,7 @@ const validator = () => {
 
   phoneInputs.forEach(item => {
     item.addEventListener('input', () => {
-      item.value = item.value.replace(/[^\d\(\)\-]+/gi, "");
+      item.value = item.value.replace(/[^\d\(\)\-\+]+/gi, "");
     })
   })
 }
