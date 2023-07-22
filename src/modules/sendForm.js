@@ -14,6 +14,18 @@ const sendForm = ({ formId, someElem = [] }) => {
   const validate = (list) => {
     let success = true;
 
+    if (list[0].value.length < 2) {
+      success = false;
+    }
+
+    if (list[1].value == '') {
+      success = false;
+    }
+
+    if (list[2].value.length < 11) {
+      success = false;
+    }
+
     // list.forEach(input => {
     //   if (!input.classList.contains('success')) {
     //     success = false;
@@ -80,6 +92,8 @@ const sendForm = ({ formId, someElem = [] }) => {
       e.preventDefault();
 
       submitForm();
+
+      setTimeout(() => form.removeChild(statusBlock), 3000)
     })
   } catch (error) {
     console.log(error.message);

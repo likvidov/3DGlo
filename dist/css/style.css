@@ -18,3 +18,7 @@
 .loaded .preloader {
   display: none;
 }
+
+.companies .companies-hor-item {
+  margin: 0;
+}

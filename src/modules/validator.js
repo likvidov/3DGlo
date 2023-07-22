@@ -12,7 +12,7 @@ const validator = () => {
   })
 
   nameInputs.forEach(item => {
-    item.addEventListener('input', () => {
+    item.addEventListener('input', (e) => {
       item.value = item.value.replace(/[^а-я\s]+/gim, "");
     })
   })
